@@ -11,35 +11,36 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DepartmentDaoImpl implements DepartmentDao {
 
-    private static final String GET_MANAGER = "SELECT * FROM employees where department =?" +
+    private static final String GET_MANAGER = "SELECT * FROM employees where department_id =?" +
             " and position ='manager'";
     private static final String SHOW_STATISTIC = "SELECT " +
-            "COUNT(position) as count from employees where department =? " +
+            "COUNT(position) as count from employees where department_id =? " +
             "and employees.position =?";
     private static final String SHOW_AVG = "SELECT AVG (salary) as AVG from employees " +
-            "where department=?";
+            "where department_id=?";
     private static final String GET_COUNT_OF_EMPLOYEER = "SELECT COUNT(*) as COUNT from employees" +
-            " where department = ?";
+            " where department_id = ?";
     private static final String GET_ALL = "SELECT * FROM department";
     private static final String GET_BY_ID = "SELECT name from department where id =?";
 
     @Override
-    public Employee getManager(int departamentId) {
+    public Optional<Employee> getManager(int departamentId) {
         try {
             Connection connection = DbConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(GET_MANAGER);
             preparedStatement.setInt(1, departamentId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                return new Employee(resultSet.getString("name"));
+                return Optional.ofNullable(new Employee(resultSet.getString("name")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
@@ -140,6 +141,6 @@ public class DepartmentDaoImpl implements DepartmentDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return "";
     }
 }

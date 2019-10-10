@@ -4,10 +4,11 @@ import com.university.entity.Departament;
 import com.university.entity.Employee;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DepartmentDao {
 
-    Employee getManager(int departamentId);
+    Optional<Employee> getManager(int departamentId);
 
     List<String> showStatistic(int departamentId);
 

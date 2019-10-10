@@ -20,7 +20,6 @@ public class UserTutorial {
         depatmentService.showAll();
         int numberOfDepartment = scanner.nextInt();
         return numberOfDepartment;
-
     }
 
     public int showIstrucrions() {
@@ -32,6 +31,4 @@ public class UserTutorial {
         int commandToPerform = scanner.nextInt();
         return commandToPerform;
     }
-
-
 }

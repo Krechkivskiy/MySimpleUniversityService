@@ -29,12 +29,11 @@ public class ActionController {
             case 3:
                 departmentService.showMiddleSalary(departmentId);
                 break;
-
             case 4:
                 departmentService.showCountOfEmployers(departmentId);
                 break;
             case 5:
-                System.out.println("please enter keyword to searching ");
+                System.out.println("Please enter keyword to searching ");
                 scanner = new Scanner(System.in);
                 String keyword = scanner.next();
                 employeeService.find(keyword);

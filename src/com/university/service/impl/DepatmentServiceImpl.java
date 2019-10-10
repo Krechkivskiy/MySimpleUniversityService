@@ -2,9 +2,11 @@ package com.university.service.impl;
 
 import com.university.dao.DepartmentDao;
 import com.university.dao.impl.DepartmentDaoImpl;
+import com.university.entity.Employee;
 import com.university.service.DepartmentService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DepatmentServiceImpl implements DepartmentService {
 
@@ -16,8 +18,13 @@ public class DepatmentServiceImpl implements DepartmentService {
 
     @Override
     public void showManager(int departamentId) {
-        System.out.println("Head of " + departmentDao.getById(departamentId) + " department" +
-                "is  " + departmentDao.getManager(departamentId).getName());
+        Optional<Employee> manager = departmentDao.getManager(departamentId);
+        if (manager.isPresent()) {
+            System.out.println("Head of " + departmentDao.getById(departamentId) + " department" +
+                    "is  " + departmentDao.getManager(departamentId).get().getName());
+        }else {
+            System.out.println("Not found");
+        }
     }
 
     @Override

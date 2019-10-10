@@ -23,7 +23,7 @@ public class Main {
                 int numberOfCommand = userTutorial.showIstrucrions();
                 controller.performCommand(numberOfCommand, choosenDepartment);
                 System.out.println(" ");
-                System.out.println("Do you want to continue action in this department? 1 yes," +
+                System.out.println("Do you want to continue action in this department? 1 yes, " +
                         " 2 comeback to department menu");
                 exitPointToDepartment = scanner.nextInt();
             }
